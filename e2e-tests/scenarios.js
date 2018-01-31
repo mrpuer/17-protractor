@@ -26,61 +26,31 @@ describe('my app', () => {
       browser.get('/#!/myaccount');
     });
 
-    // it('Form is exist and visible', () => {
-    //   const userInput = element(by.model('$ctrl.newUser.name'));
-    //   expect(userInput.isDisplayed()).eventually.to.be.true;
-    // });
+    it('Form is exist and visible', () => {
+      const userInput = element(by.model('$ctrl.newUser.name'));
+      expect(userInput.isDisplayed()).eventually.to.be.true;
+    });
 
     describe('Check for required fields', () => {
-      // let formButton;
-      // beforeEach(() => {
-      //   formButton = element(by.id('formButton'));
-      // });
-      // it('inactive button if no input text', () => {
-      //   expect(formButton.isEnabled()).eventually.to.be.false;
-      // });
-      // it('inactive button if the form is fillet not correctly', () => {
-      //   element(by.model('$ctrl.newUser.name')).sendKeys('bebe');
-      //   element(by.model('$ctrl.newUser.email')).sendKeys('a@a');
-      //   element(by.model('$ctrl.newUser.phone')).sendKeys('+799');
-      //   expect(formButton.isEnabled()).eventually.to.be.false;
-      // });
+      let formButton;
+      beforeEach(() => {
+        formButton = element(by.id('formButton'));
+      });
+      it('inactive button if no input text', () => {
+        expect(formButton.isEnabled()).eventually.to.be.false;
+      });
+      it('inactive button if the form is fillet not correctly', () => {
+        element(by.model('$ctrl.newUser.name')).sendKeys('b');
+        element(by.model('$ctrl.newUser.email')).sendKeys('a@a');
+        element(by.model('$ctrl.newUser.phone')).sendKeys('+799');
+        expect(formButton.isEnabled()).eventually.to.be.false;
+      });
       it('active button if form fields is submitted', () => {
         element(by.model('$ctrl.newUser.name')).sendKeys('vova');
-        // element(by.model('$ctrl.newUser.email')).sendKeys('a@a.ru');
-        // element(by.model('$ctrl.newUser.phone')).sendKeys('+79991112233');
-        // expect(formButton.isEnabled()).eventually.to.be.true;
+        element(by.model('$ctrl.newUser.email')).sendKeys('a@a.ru');
+        element(by.model('$ctrl.newUser.phone')).sendKeys('+79991112233');
+        expect(formButton.isEnabled()).eventually.to.be.true;
       });
     });
   });
-
-
-  // describe('view1', function() {
-
-  //   beforeEach(function() {
-  //     browser.get('index.html#!/view1');
-  //   });
-
-
-  //   it('should render view1 when user navigates to /view1', function() {
-  //     expect(element.all(by.css('[ng-view] p')).first().getText()).
-  //       toMatch(/partial for view 1/);
-  //   });
-
-  // });
-
-
-  // describe('view2', function() {
-
-  //   beforeEach(function() {
-  //     browser.get('index.html#!/view2');
-  //   });
-
-
-  //   it('should render view2 when user navigates to /view2', function() {
-  //     expect(element.all(by.css('[ng-view] p')).first().getText()).
-  //       toMatch(/partial for view 2/);
-  //   });
-
-  // });
 });

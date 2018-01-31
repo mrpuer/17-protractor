@@ -1,0 +1,69 @@
+<style>
+  .ng-dirty.ng-invalid {
+      border-color: #FA787E;
+  }
+
+  .ng-dirty.ng-valid {
+      border-color: #78FA89;
+  }
+
+</style>
+<div ng-hide="$ctrl.userInfoShow">
+<form name="$ctrl.newUserForm" novalidate>
+  <div class="form-group">
+      <label>Имя</label>
+      <input class="form-control" data-ng-model="$ctrl.newUser.name" type="text" placeholder="Ivan" required ng-minlength="2" name="userName">
+  </div>
+
+  <div ng-messages="$ctrl.newUserForm.userName.$error" ng-if="$ctrl.newUserForm.userName.$dirty" role="alert">
+
+      <div ng-message="required" class="alert alert-danger">Необходимо указать имя</div>
+      <div ng-message="minlength" class="alert alert-danger">Имя слишком короткое</div>
+
+  </div>
+
+  <div class="form-group">
+      <label>Email адрес</label>
+      <input class="form-control" data-ng-model="$ctrl.newUser.email" type="email" placeholder="name@email.com" required name="userEmail">
+  </div>
+
+  <div role="alert" ng-messages="$ctrl.newUserForm.userEmail.$error" ng-if="$ctrl.newUserForm.userEmail.$dirty">
+      <div ng-message="required" class="alert alert-danger">Необходимо указать Email</div>
+      <div ng-message="email" class="alert alert-danger">Неверный формат Email</div>
+  </div>
+
+  <div class="form-group">
+    <label>Номер телефона</label>
+    <input class="form-control" data-ng-model="$ctrl.newUser.phone" type="text" placeholder="+7...." ng-minlength="10" data-ng-pattern="/^\+(\d)+$/" name="userPhone">
+</div>
+
+<div ng-messages="$ctrl.newUserForm.userPhone.$error" ng-if="$ctrl.newUserForm.userPhone.$dirty" role="alert">
+    <div ng-message="minlength" class="alert alert-danger">Телефонный номер слишком короткий</div>
+    <div ng-message="pattern" class="alert alert-danger">Неверный формат телефонного номера</div>
+
+</div>
+
+  <button type="submit" class="btn btn-default" data-ng-click="$ctrl.addUser($ctrl.newUser)" data-ng-disabled="$ctrl.newUserForm.$invalid" id="formButton">Добавить
+  </button>
+
+</form>
+</div>
+
+<div ng-show="$ctrl.userInfoShow"  class="container">
+  <div class="row">
+    <h2>Your account info</h2>
+    <div class="col">
+      Name: {{$ctrl.userInfo.name}}
+    </div>
+    <div class="col">
+      Email: {{$ctrl.userInfo.email}}
+    </div>
+    <div class="col">
+      Phone: {{$ctrl.userInfo.phone}}
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-default" data-ng-click="$ctrl.removeUser()">Удалить
+          </button>
+      </div>
+  </div>
+</div>

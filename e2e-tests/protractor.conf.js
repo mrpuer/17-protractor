@@ -8,16 +8,16 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'safari'
   },
 
   baseUrl: 'http://localhost:8000/',
 
   framework: 'mocha',
 
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
-  },
+  // jasmineNodeOpts: {
+  //   defaultTimeoutInterval: 30000
+  // },
 
   onPrepare: () => {
     const chai = require('chai');
